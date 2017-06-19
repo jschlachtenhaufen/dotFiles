@@ -2,7 +2,7 @@
 
 [user]
 	name = John Schlachtenhaufen
-	email = john.schlachtenhaufen@oracle.com
+	email = jschlach25@gmail.com
 
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --max-count=200
