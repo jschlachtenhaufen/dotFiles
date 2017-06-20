@@ -17,5 +17,8 @@ set hidden
 " Maps jj and kk to esc key 
 imap jj <Esc>
 imap kk <Esc>
+
+" Maps switching windows from ctr+shift to just crl
 map <C-j> <C-w>j
 map <C-k> <C-w>k
+
