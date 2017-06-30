@@ -3,6 +3,6 @@
 
 for file in ./*; do
     if ! [ -x "$file" ]; then
-        ln -s `pwd`/${file:2} ~/.${file:2}
+        ln -is `pwd`/${file:2} ~/.${file:2}
     fi
 done

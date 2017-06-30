@@ -5,7 +5,8 @@ export TEXTURA_DATABASE_PATH=$HOME # where dumps are stored (defaults to home di
 # Adds interactive options for security
 alias rm='rm -ir'
 alias mv='mv -i'
-alias cp='cp -i'
+alias cp='cp -ir'
+alias grep='grep --color -r'
 
 # creates necesary parent directories when making a directory
 alias mkdir='mkdir -p'
