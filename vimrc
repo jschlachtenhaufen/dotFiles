@@ -7,8 +7,21 @@ set hlsearch
 " Updates search query as typed
 set incsearch
 
+" Show command in bottom bar
+set showcmd
+
+" highlight cursor line
+set cursorline
+
+" visual autocomplete for commands
+set wildmenu
+
+" highlight matching [{(
+set showmatch
+
 " Spacing conventions
 set tabstop=4
+set softtabstop=4
 set expandtab
 set shiftwidth=4
 set autoindent
@@ -22,3 +35,8 @@ imap kk <Esc>
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 
+
+colorscheme badwolf
+
+" Enables syntax
+syntax enable
