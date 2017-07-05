@@ -1,5 +1,5 @@
 #/bin/bash
-# A script to sim link all the dot files into the home directory
+# A script to sym link all the dot files into the home directory
 
 for file in ./*; do
     if [ "$(basename $file)" != "$(basename $0)" ]; then

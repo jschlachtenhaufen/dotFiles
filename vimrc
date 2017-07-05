@@ -35,7 +35,7 @@ imap kk <Esc>
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 
-
+" Sets color scheme to badwolf - see vim/colors/badwolf.vim
 colorscheme badwolf
 
 " Enables syntax
