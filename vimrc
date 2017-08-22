@@ -30,13 +30,22 @@ set hidden
 " Maps jj and kk to esc key 
 imap jj <Esc>
 imap kk <Esc>
+imap jJ <Esc>
+imap kK <Esc>
 
 " Maps switching windows from ctr+shift to just crl
 map <C-j> <C-w>j
 map <C-k> <C-w>k
+
+map <CR> o<Esc>
 
 " Sets color scheme to badwolf - see vim/colors/badwolf.vim
 colorscheme badwolf
 
 " Enables syntax
 syntax enable
+
+command WQ wq
+command Wq wq
+command W w
+command Q q
