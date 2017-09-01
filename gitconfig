@@ -1,5 +1,4 @@
 # This is Git's per-user configuration file.
-
 [user]
 	name = John Schlachtenhaufen
 	email = jschlach25@gmail.com
@@ -10,5 +9,25 @@
 
 [core]
     editor = vim
+
 [push]
 	default = simple
+
+[web]
+    browser = google-chrome
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
