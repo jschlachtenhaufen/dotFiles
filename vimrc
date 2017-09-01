@@ -14,6 +14,9 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin for html auto-closing
 Plugin 'alvan/vim-closetag'
 
+" Plugin to match html tags
+Plugin 'gregsexton/MatchTag'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin on    " required
