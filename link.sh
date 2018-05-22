@@ -7,3 +7,5 @@ for file in ./*; do
         ln -is `pwd`/${file:2} ~/.${file:2}
     fi
 done
+
+git clone https://github.com/VundleVim/Vundle.vim.git ./vim/bundle/Vundle.vim
