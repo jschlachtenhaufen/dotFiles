@@ -5,17 +5,20 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Plugin for html auto-closing
-Plugin 'alvan/vim-closetag'
+" Displays dir structure on left with useful commands DOCUEMNTATION!
+Plugin 'scrooloose/nerdtree'
 
-" Plugin to match html tags
-Plugin 'gregsexton/MatchTag'
+" comments and uncomments code
+Plugin 'tpope/vim-commentary'
+
+" Colors for current mode
+Plugin 'itchyny/lightline.vim'
+
+"Auto close stuff"
+Plugin 'Townk/vim-autoclose'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,9 +44,6 @@ set hlsearch
 " Updates search query as typed
 set incsearch
 
-" Show command in bottom bar
-set showcmd
-
 " highlight cursor line
 set cursorline
 
@@ -57,9 +57,16 @@ set showmatch
 set tabstop=4
 set softtabstop=4
 set expandtab
-set shiftwidth=4
 set autoindent
+set smartindent
+set shiftwidth=4
 set hidden
+
+" Fold based on indent
+set foldmethod=indent
+
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Maps jj and kk to esc key 
 imap jj <Esc>
@@ -72,6 +79,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 
 map <CR> o<Esc>
+noremap <TAB> <C-W>w
+
+inoremap {<CR> {<CR>}<C-o>O
 
 " Sets color scheme to badwolf - see vim/colors/badwolf.vim
 colorscheme badwolf
@@ -84,4 +94,8 @@ command Wq wq
 command W w
 command Q q
 
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+
+set cinoptions+=+1
+set laststatus=2
