@@ -56,6 +56,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# parses name of git branch, if applicable, to insert in prompt
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -66,15 +67,6 @@ else
     PS1="\[\e[1;32m\][\u@\h \W]\$\[\e[0m\]\[\033[33m\]\$(parse_git_branch)\[\033[00m\] "
 fi
 unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -91,22 +83,13 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -120,30 +103,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# # Prompt to add branch and status to the command line
-# COLOR_RED="\[\e[31;40m\]"
-# COLOR_GREEN="\[\e[32;40m\]"
-# COLOR_CYAN="\[\e[36;40m\]"
-# COLOR_RESET="\[\e[0m\]"
-
-# function git_branch_name {
-#   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-#   echo " ("${ref#refs/heads/}")"
-# }
-
-# function git_branch_color {
-#   if [[ $(git status 2> /dev/null | grep -c :) == 0 ]]
-#     then echo "${COLOR_GREEN}"
-#     else echo "${COLOR_RED}"
-#   fi
-# }
-
-# function prompt_title {
-#   PS1="\w$(git_branch_color)$(git_branch_name)${COLOR_RESET} \$ "
-# }
-
-# PROMPT_COMMAND=prompt_title
-
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
@@ -151,8 +110,6 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias pip=pip3
-alias python=python3
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -160,6 +117,4 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # added by travis gem
-[ -f /Users/johnschlachtenhaufen/.travis/travis.sh ] && source /Users/johnschlachtenhaufen/.travis/travis.sh
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PATH="$PATH:/Users/johnschlachtenhaufen/flutter/bin"
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
