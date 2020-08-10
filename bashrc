@@ -56,10 +56,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\e[1;91m\][\u \w]\$\[\e[0m\] '
+    PS1="\[\e[1;91m\][\u \w]\$\[\e[0m\]\[\033[33m\]\$(parse_git_branch)\[\033[00m\] "
 else
-    PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
+    PS1="\[\e[1;32m\][\u@\h \W]\$\[\e[0m\]\[\033[33m\]\$(parse_git_branch)\[\033[00m\] "
 fi
 unset color_prompt force_color_prompt
 
@@ -116,7 +120,46 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Setting PATH for Python 3.4
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
-export PATH
+# # Prompt to add branch and status to the command line
+# COLOR_RED="\[\e[31;40m\]"
+# COLOR_GREEN="\[\e[32;40m\]"
+# COLOR_CYAN="\[\e[36;40m\]"
+# COLOR_RESET="\[\e[0m\]"
+
+# function git_branch_name {
+#   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+#   echo " ("${ref#refs/heads/}")"
+# }
+
+# function git_branch_color {
+#   if [[ $(git status 2> /dev/null | grep -c :) == 0 ]]
+#     then echo "${COLOR_GREEN}"
+#     else echo "${COLOR_RED}"
+#   fi
+# }
+
+# function prompt_title {
+#   PS1="\w$(git_branch_color)$(git_branch_name)${COLOR_RESET} \$ "
+# }
+
+# PROMPT_COMMAND=prompt_title
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias pip=pip3
+alias python=python3
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# added by travis gem
+[ -f /Users/johnschlachtenhaufen/.travis/travis.sh ] && source /Users/johnschlachtenhaufen/.travis/travis.sh
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH="$PATH:/Users/johnschlachtenhaufen/flutter/bin"
