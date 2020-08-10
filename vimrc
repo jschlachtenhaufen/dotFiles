@@ -2,11 +2,12 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=/home/jschlach/.vim/bundle/Vundle.vim
+" set rtp+=/Users/johnschlachtenhaufen/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'Vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Displays dir structure on left
 Plugin 'scrooloose/nerdtree'
@@ -27,10 +28,13 @@ Plugin 'nvie/vim-flake8'
 Plugin 'w0rp/ale'
 
 " More detailed syntax checking
-" Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 
 " Autocloses html
 Plugin 'alvan/vim-closetag'
+
+" auto generate docstring
+Plugin 'heavenshell/vim-pydocstring'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -98,6 +102,7 @@ noremap <TAB> <C-W>w
 let mapleader=" "
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 nnoremap <Leader>r :NERDTreeFind<Enter>
+nnoremap <Leader>p :!python3 %<Enter>
 nnoremap <Leader><Tab> <C-w>w
 nnoremap <Tab> <C-i>
 autocmd VimEnter * if !argc() | NERDTree | endif
