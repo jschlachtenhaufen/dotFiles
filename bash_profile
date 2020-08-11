@@ -103,8 +103,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+  . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -118,3 +118,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+export PATH="/usr/local/opt/ruby/bin:$PATH"

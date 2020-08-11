@@ -6,4 +6,6 @@ for file in bash_aliases bash_profile gitconfig vim vimrc; do
     ln -is `pwd`/${file} ~/.${file}
 done
 
+cp ./git-completion.bash /usr/local/etc/bash_completion.d/
+
 [ -d ./vim/bundle/Vundle.vim ] || git clone https://github.com/VundleVim/Vundle.vim.git ./vim/bundle/Vundle.vim
