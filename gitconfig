@@ -1,12 +1,12 @@
 # This is Git's per-user configuration file.
 [user]
-	name = John Schlachtenhaufen
-	email = jschlach25@gmail.com
+    name = John Schlachtenhaufen
+    email = jschlach25@gmail.com
 
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --max-count=200
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=200
-	co = checkout
+    co = checkout
     st = status
     br = branch
     ci = commit
@@ -17,7 +17,7 @@
     editor = vim
 
 [push]
-	default = simple
+    default = simple
     
 [pull]
     rebase = true
